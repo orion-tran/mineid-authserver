@@ -217,7 +217,7 @@ public final class ServerHandler extends ByteToMessageDecoder {
 
                     if (!Arrays.equals(verify, finalVerifyToken)) {
                         logger.debug("Verification arrays don't match! (kick!)");
-                        close("Encryption failed! (Rejoin)", ctx);
+                        close("{\"text\":\"Encryption failed! (Rejoin)\"}", ctx);
                         ctx.close();
                         return;
                     } else {
@@ -265,7 +265,7 @@ public final class ServerHandler extends ByteToMessageDecoder {
             }
         } catch (Exception e) {
             logger.error("Forcibly closed client! Exception occurred!");
-            close("An error has occurred, please reconnect!", ctx);
+            close("{\"text\":\"An error has occurred, please reconnect!\"}", ctx);
             logger.error(e.getMessage());
             e.printStackTrace();
             ctx.close();
